@@ -1,0 +1,8 @@
+curl -X POST -H "Content-Type: application/json" --data @connectors/users-connector.json http://localhost:8083/connectors
+
+
+curl -H "Accept:application/json" localhost:8083/connectors/
+
+curl -i -X GET -H "Accept:application/json" localhost:8083/connectors/users-connector
+
+curl GET -H "Accept:application/json" localhost:8083/connectors/users-connector | jq

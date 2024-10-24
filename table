@@ -1,0 +1,5 @@
+docker exec -it cdc-debezium-postgres-1 psql -U myuser -d mydb -c "CREATE TABLE users (id SERIAL PRIMARY KEY, username VARCHAR(50) NOT NULL, email VARCHAR(100) NOT NULL UNIQUE, password BYTEA NOT NULL);"
+
+docker exec -it cdc-debezium-postgres-1 psql -U myuser -d mydb -c "INSERT INTO users (username, email, password) VALUES ('andika', 'm.andika.nugraha@gmail.com', '\x12345678');"
+
+docker exec -it cdc-debezium-postgres-1 psql -U myuser -d mydb -c "SELECT * from users;"
