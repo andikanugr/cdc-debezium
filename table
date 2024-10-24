@@ -3,3 +3,10 @@ docker exec -it cdc-debezium-postgres-1 psql -U myuser -d mydb -c "CREATE TABLE 
 docker exec -it cdc-debezium-postgres-1 psql -U myuser -d mydb -c "INSERT INTO users (username, email, password) VALUES ('andika', 'm.andika.nugraha@gmail.com', '\x12345678');"
 
 docker exec -it cdc-debezium-postgres-1 psql -U myuser -d mydb -c "SELECT * from users;"
+
+CREATE TABLE users (
+    id INT PRIMARY KEY,
+    name VARCHAR(255),
+    email VARCHAR(255),
+    password LONGBLOB  -- Use LONGBLOB for large binary data like hashed passwords
+);

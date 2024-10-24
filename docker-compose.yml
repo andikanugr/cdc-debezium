@@ -52,10 +52,13 @@ services:
       - OFFSET_STORAGE_TOPIC=my_connect_offsets
       - STATUS_STORAGE_TOPIC=my_connect_statuses
       - PLUGIN_NAME=pgoutput  # Specify the use of pgoutput
+      - CONNECTOR_PLUGIN_PATH=/kafka/connect/plugins
     links:
       - zookeeper
       - kafka
       - postgres
+    volumes:
+      - ./kafka-plugins:/kafka/connect/plugins
 
   kafka-ui:
     networks:
@@ -73,6 +76,18 @@ services:
       - zookeeper
       - kafka
       - connect
+
+  mysql:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: mypassword
+      MYSQL_DATABASE: mydb
+      MYSQL_USER: myuser
+      MYSQL_PASSWORD: mypassword
+    ports:
+      - "3306:3306"
+    networks:
+      - kafka_network
 
 networks:
   kafka_network:
