@@ -10,3 +10,5 @@ CREATE TABLE users (
     email VARCHAR(255),
     password LONGBLOB  -- Use LONGBLOB for large binary data like hashed passwords
 );
+
+➜  cdc-debezium git:(main) ✗ docker exec -it cdc-debezium-postgres-1 psql -U myuser -d mydb -c "SELECT *, encode(password, 'base64') from users;"
